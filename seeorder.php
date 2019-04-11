@@ -18,7 +18,7 @@
         <title>Отклик на заказ</title>
         <meta name="description" content="">
         <meta name="viewport" content="initial-scale=1">
-         <link rel="shortcut icon" href="assets/images/logot.png" type="image/x-icon">
+         <link rel="shortcut icon" href="assets/images/logo.png" type="image/x-icon">
 
         <link rel="stylesheet" href="assets/css/bootstrap.css" type="text/css">
         <!--        <link rel="stylesheet" href="assets/css/bootstrap-theme.min.css">-->
