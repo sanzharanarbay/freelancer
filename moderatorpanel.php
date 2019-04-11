@@ -74,7 +74,7 @@
   <body>
   <?php  if (isset($_SESSION['username']) && ($_SESSION['role_id']==2)) { ?>
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="adminpanel.php"><img src="assets/images/logot.png" width="25" alt="Logo">&nbsp; Freelancer.kz</a>
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="adminpanel.php"><img src="assets/images/logo2.png" height="30" alt="Logo"></a>
   <input class="form-control form-control-dark w-70" type="text" placeholder="Search" aria-label="Search">&nbsp;&nbsp;&nbsp;
   <?php  if (isset($_SESSION['username'])) { ?>
     <div class="dropdown">

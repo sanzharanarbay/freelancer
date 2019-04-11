@@ -64,10 +64,7 @@ if (isset($_POST['reg_cus'])) {
   	$query = "INSERT INTO users (u_lastname, u_firstname, email, username, u_phonenumber, u_country, u_state, u_city,  password, roleid) 
   			  VALUES('$lastname','$firstname','$email','$username', '$phonenumber', '$country','$state', '$city', '$password','$roleid')";
   	mysqli_query($db, $query);
-    $_SESSION['username'] = $username;
-    $_SESSION['role_id'] = $roleid;
-    $_SESSION['success'] = "Вы зашли !!!";
-  	header('location: index.php');
+  	header('location: thanks.php');
   }
 
   
@@ -120,10 +117,7 @@ if (isset($_POST['reg_free'])) {
   	$fquery = "INSERT INTO users (u_lastname, u_firstname, email, username, u_phonenumber, u_country, u_state, u_city,  password, roleid) 
   			  VALUES('$flastname','$ffirstname','$femail','$fusername', '$fphonenumber', '$fcountry','$fstate', '$fcity', '$fpassword','$froleid')";
   	mysqli_query($db, $fquery);
-    $_SESSION['username'] = $fusername;
-    $_SESSION['role_id'] = $froleid;
-  	$_SESSION['success'] = "Вы зашли !!!";
-  	header('location: index.php');
+  	header('location: thanks.php');
   }
 }
 

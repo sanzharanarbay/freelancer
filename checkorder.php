@@ -25,7 +25,7 @@
     
     <!-- Custom styles for this template -->
     <link href="assets/css/dashboard.css" rel="stylesheet">
-    <link rel="shortcut icon" href="assets/images/logot.png" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/images/logo.png" type="image/x-icon">
     <style type="text/css">
         	
           .dropbtn {

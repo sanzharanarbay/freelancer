@@ -18,7 +18,7 @@
         <title>Freelancer.kz</title>
         <meta name="description" content="">
         <meta name="viewport" content="initial-scale=1">
-         <link rel="shortcut icon" href="assets/images/logot.png" type="image/x-icon">
+         <link rel="shortcut icon" href="assets/images/logo.png" type="image/x-icon">
 
         <link rel="stylesheet" href="assets/css/bootstrap.css" type="text/css">
         <!--        <link rel="stylesheet" href="assets/css/bootstrap-theme.min.css">-->
@@ -37,50 +37,60 @@
 
         <!--Theme Responsive css-->
         <link rel="stylesheet" href="assets/css/responsive.css" type="text/css">
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 
         <style type="text/css">
         	
-        .dropbtn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 5px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-}
+								.dropbtn {
+									background-color: #4CAF50;
+									color: white;
+									padding: 5px;
+									font-size: 16px;
+									border: none;
+									cursor: pointer;
+								}
 
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
+								.dropdown {
+									position: relative;
+									display: inline-block;
+								}
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
+								.dropdown-content {
+									right: 0;
+									display: none;
+									position: absolute;
+									background-color: #f9f9f9;
+									min-width: 160px;
+									box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+									z-index: 1;
+								}
 
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
+								.dropdown-content a {
+									color: black;
+									padding: 12px 16px;
+									text-decoration: none;
+									display: block;
+								}
 
-.dropdown-content a:hover {background-color: #f1f1f1}
+								.dropdown-content a:hover {background-color: #f1f1f1}
 
-.dropdown:hover .dropdown-content {
-  display: block;
-}
+								.dropdown:hover .dropdown-content {
+									display: block;
+								}
 
-.dropdown:hover .dropbtn {
-  background-color: #3e8e41;
-}
+								.dropdown:hover .dropbtn {
+									background-color: #3e8e41;
+								}
+								.searchbox{
+									height:35px;
+									margin-right:20px;
+								}
+								.navbar-nav .mr-auto{
+								padding-top:0;
+								margin-top:0;
+								}
+
         </style>
     </head>
     <body>
@@ -89,8 +99,8 @@
         <![endif]-->
 		
 		<div class='preloader'><div class='loaded'>&nbsp;</div></div>
-         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark menu">
-  <a class="navbar-brand" href="index.php"><img src="assets/images/logot.png" width="50" alt="Logo">&nbsp; Freelancer.kz </a>
+         <nav class="navbar navbar-expand-md  fixed-top mainmenu">
+  <a class="navbar-brand" href="index.php"><img src="assets/images/logo2.png" height="30" alt="Logo"> </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -105,9 +115,9 @@
       <li class="nav-item">
         <a class="nav-link" href="help.php">Помощь</a>
       </li>
-    </ul>
-    <form class="form-inline mt-2 mt-md-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+		</ul>
+    <form class="form-inline">
+      <input class="form-control searchbox" type="text" placeholder="Search" aria-label="Search">
     </form>
     <div class="content">
   	<!-- notification message -->
@@ -125,7 +135,7 @@
       <a href="index.php?logout='1'" style="color: red;">Выход</a>
 	<?php }else if($_SESSION['role_id']==4){?>
 		<a href="#">Профиль</a>
-	  <a href="#">Найти заказ</a>
+	  <a href="searchvacancy.php">Найти заказ</a>
 		<a href="index.php?logout='1'" style="color: red;">Выход</a>
 	<?php }?>
   </div>
@@ -320,6 +330,7 @@
 
 
         <script src="assets/js/vendor/jquery-1.11.2.min.js"></script>
+				
         <script src="assets/js/vendor/bootstrap.min.js"></script>
 
         <script src="assets/js/plugins.js"></script>

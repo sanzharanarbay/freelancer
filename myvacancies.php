@@ -18,7 +18,7 @@
         <title>Мои заказы</title>
         <meta name="description" content="">
         <meta name="viewport" content="initial-scale=1">
-         <link rel="shortcut icon" href="assets/images/logot.png" type="image/x-icon">
+         <link rel="shortcut icon" href="assets/images/logo.png" type="image/x-icon">
 
         <link rel="stylesheet" href="assets/css/bootstrap.css" type="text/css">
         <!--        <link rel="stylesheet" href="assets/css/bootstrap-theme.min.css">-->
@@ -34,6 +34,7 @@
 		
         <!--Theme custom css -->
         <link rel="stylesheet" href="assets/css/style.css" type="text/css">
+        <link rel="stylesheet" href="assets/css/pagination.css" type="text/css">
 
         <!--Theme Responsive css-->
         <link rel="stylesheet" href="assets/css/responsive.css" type="text/css">
@@ -42,45 +43,58 @@
 
         <style type="text/css">
         	
-        .dropbtn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 5px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-}
+        	.dropbtn {
+									background-color: #4CAF50;
+									color: white;
+									padding: 5px;
+									font-size: 16px;
+									border: none;
+									cursor: pointer;
+								}
 
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
+								.dropdown {
+									position: relative;
+									display: inline-block;
+								}
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
+								.dropdown-content {
+									right: 0;
+									display: none;
+									position: absolute;
+									background-color: #f9f9f9;
+									min-width: 160px;
+									box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+									z-index: 1;
+								}
 
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
+								.dropdown-content a {
+									color: black;
+									padding: 12px 16px;
+									text-decoration: none;
+									display: block;
+								}
 
-.dropdown-content a:hover {background-color: #f1f1f1}
+								.dropdown-content a:hover {background-color: #f1f1f1}
 
-.dropdown:hover .dropdown-content {
-  display: block;
-}
+								.dropdown:hover .dropdown-content {
+									display: block;
+								}
 
-.dropdown:hover .dropbtn {
-  background-color: #3e8e41;
-}
+								.dropdown:hover .dropbtn {
+									background-color: #3e8e41;
+								}
+								.searchbox{
+									height:35px;
+									margin-right:20px;
+								}
+								.navbar-nav .mr-auto{
+								padding-top:0;
+								margin-top:0;
+                }
+                .pagination{
+                  margin-left:100px;
+                }
+
         </style>
     </head>
     <body>
@@ -88,32 +102,28 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 		
-		<div class='preloader'><div class='loaded'>&nbsp;</div></div>
-         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark menu">
-  <a class="navbar-brand" href="index.php"><img src="assets/images/logot.png" width="50" alt="Logo">&nbsp; Freelancer </a>
+        <div class='preloader'><div class='loaded'>&nbsp;</div></div>
+         <nav class="navbar navbar-expand-md  fixed-top mainmenu">
+  <a class="navbar-brand" href="index.php"><img src="assets/images/logo2.png" height="30" alt="Logo"> </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="index.php">Главная</a>
+      <li class="nav-item active">
+        <a class="nav-link" href="index.php">Главная <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="vacancies.php">Заказы</a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="myvacancies.php">Мои заказы <span class="sr-only">(current)</span></a>
-      </li>
       <li class="nav-item">
         <a class="nav-link" href="help.php">Помощь</a>
       </li>
-    </ul>
-    <form class="form-inline mt-2 mt-md-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+		</ul>
+    <form class="form-inline">
+      <input class="form-control searchbox" type="text" placeholder="Search" aria-label="Search">
     </form>
     <div class="content">
-  	<!-- notification message -->
   	
 
     <!-- logged in user information -->
@@ -153,6 +163,17 @@
 <?php
 include 'db.php';
 $vac_id = 0;
+$start = 0;  $per_page = 4;
+    $page_counter = 0;
+    $next = $page_counter + 1;
+    $previous = $page_counter - 1;
+     if(isset($_GET['start'])){
+     $start = $_GET['start'];
+     $page_counter =  $_GET['start'];
+     $start = $start *  $per_page;
+     $next = $page_counter + 1;
+     $previous = $page_counter - 1;
+    }
 if(isset($_SESSION['user_id'])){
 $query = $connection->prepare(" SELECT v.v_id, v.user_id, v.profession_id,  v.vacancy_name,v.requirements, v.price, v.v_country, v.v_city, v.v_statusid, v.post_date, p.p_id, p.name, u.id, u.username, c.country_id, c.country_name, ci.city_id, ci.city_name, s.s_id, s.status
                      FROM vacancies v 
@@ -162,9 +183,16 @@ $query = $connection->prepare(" SELECT v.v_id, v.user_id, v.profession_id,  v.va
                      LEFT OUTER JOIN cities ci  ON ci.city_id = v.v_city
                      LEFT OUTER JOIN status s   ON s.s_id = v.v_statusid
                      WHERE v.user_id = :user_id
-                     ORDER BY v.post_date DESC") or die($mysqli->error);
+                     ORDER BY v.post_date DESC
+                     LIMIT $start, $per_page") or die($mysqli->error);
     $query->execute(array('user_id'=>$_SESSION['user_id']));
     $vacancies = $query->fetchAll();
+    $userid = $_SESSION['user_id'];
+    $count_query = "SELECT * FROM vacancies WHERE user_id = '$userid'";
+    $query1 = $connection->prepare($count_query);
+    $query1->execute();
+    $count = $query1->rowCount();
+     $paginations = ceil($count / $per_page);
 }
 
 ?>
@@ -213,9 +241,31 @@ if (isset($_SESSION['message'])): ?>
                                       </div>
         <!-- /.row -->
                     
-   
+        <center>
+            <ul class="pagination">
+            <?php
+                if($page_counter == 0){
+                    echo "<li><a href=?start='0' class='active'>0</a></li>";
+                    for($j=1; $j < $paginations; $j++) { 
+                      echo "<li><a href=?start=$j>".$j."</a></li>";
+                   }
+                }else{
+                    echo "<li><a href=?start=$previous>Previous</a></li>"; 
+                    for($j=0; $j < $paginations; $j++) {
+                     if($j == $page_counter) {
+                        echo "<li><a href=?start=$j class='active'>".$j."</a></li>";
+                     }else{
+                        echo "<li><a href=?start=$j>".$j."</a></li>";
+                     } 
+                  }if($j != $page_counter+1)
+                    echo "<li><a href=?start=$next>Next</a></li>"; 
+                } 
+            ?>
+            </ul>
+            </center>   
 
   </div> <!-- /container -->
+  
  </section>
     <hr>
     <?php }else{ ?>

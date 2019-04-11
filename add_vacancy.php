@@ -96,7 +96,7 @@ $(document).ready(function(){
 </script>
         <style type="text/css">
         	
-        .dropbtn {
+          .dropbtn {
   background-color: #4CAF50;
   color: white;
   padding: 5px;
@@ -111,6 +111,7 @@ $(document).ready(function(){
 }
 
 .dropdown-content {
+	right: 0;
   display: none;
   position: absolute;
   background-color: #f9f9f9;
@@ -135,6 +136,14 @@ $(document).ready(function(){
 .dropdown:hover .dropbtn {
   background-color: #3e8e41;
 }
+.searchbox{
+	height:35px;
+	margin-right:20px;
+}
+.navbar-nav .mr-auto{
+padding-top:0;
+margin-top:0;
+}
         </style>
     </head>
     <body>
@@ -142,32 +151,28 @@ $(document).ready(function(){
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 		
-		<div class='preloader'><div class='loaded'>&nbsp;</div></div>
-         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark menu">
-  <a class="navbar-brand" href="index.php"><img src="assets/images/logot.png" width="50" alt="Logo">&nbsp; Freelancer.kz </a>
+        <div class='preloader'><div class='loaded'>&nbsp;</div></div>
+         <nav class="navbar navbar-expand-md  fixed-top mainmenu">
+  <a class="navbar-brand" href="index.php"><img src="assets/images/logo2.png" height="30" alt="Logo"> </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="index.php">Главная <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="index.php">Главная </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="vacancies.php">Заказы</a>
-      </li>
-       <li class="nav-item active">
-        <a class="nav-link" href="add_vacancy.php">Добавить заказ<span class="sr-only">(current)</span></a>
+      <li class="nav-item active">
+        <a class="nav-link" href="vacancies.php">Заказы <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="help.php">Помощь</a>
       </li>
-    </ul>
-    <form class="form-inline mt-2 mt-md-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+		</ul>
+    <form class="form-inline">
+      <input class="form-control searchbox" type="text" placeholder="Search" aria-label="Search">
     </form>
     <div class="content">
-  	<!-- notification message -->
   	
 
     <!-- logged in user information -->

@@ -27,7 +27,7 @@ include('backend.php');
     
     <!-- Custom styles for this template -->
     <link href="assets/css/dashboard.css" rel="stylesheet">
-    <link rel="shortcut icon" href="assets/images/logot.png" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/images/logo.png" type="image/x-icon">
     <script src="assets/js/jquery.min.js"></script>
     
     <style type="text/css">
@@ -119,7 +119,7 @@ $(document).ready(function(){
   <body ng-app="myApp">
   <?php  if (isset($_SESSION['username']) && ($_SESSION['role_id']==1)) { ?>
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="adminpanel.php"><img src="assets/images/logot.png" width="25" alt="Logo">&nbsp; Freelancer.kz</a>
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="adminpanel.php"><img src="assets/images/logo2.png" height="30" alt="Logo"></a>
   <input class="form-control form-control-dark w-70" type="text" placeholder="Search" aria-label="Search">&nbsp;&nbsp;&nbsp;
   <?php  if (isset($_SESSION['username'])) { ?>
     <div class="dropdown">

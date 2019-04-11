@@ -377,17 +377,18 @@ input:-ms-input-placeholder {
 
 .home-bg{
     background: url(../images/header-bg.jpg) no-repeat center top fixed;
-	min-height:700px;
+    min-height:700px;
+    background-position-x: 0;   
     -moz-background-size: cover;
     -webkit-background-size: cover;
     -o-background-size: cover;
-    background-size: cover;
+    background-size: 120%;
     width: 100%;
     overflow: hidden;
 }
 
-.mainmenu.navbar-default {
-	background-color:transparent;
+.mainmenu {
+	background-color:rgba(50, 50, 50, 1);
 	border-color:transparent;
 	
 }
@@ -395,11 +396,11 @@ input:-ms-input-placeholder {
 	padding: 0px 0px;
 }
 .navbar-brand  img{
-	margin-top: 15px;
+	margin-top: 0px;
 	padding-left: 15px;
 }
 .navbar-nav {
-    padding-top: 15px;
+    padding-top: 0px;
 }
 .mainmenu .brand-bg{
 	background: #fa5c65;
@@ -417,7 +418,7 @@ input:-ms-input-placeholder {
 }
 
 .mainmenu.menu-bg{
-	background:#c8ced0;
+	background: rgba(50, 50, 50, 0.8);
 	color:#c8ced0;
 }
 
@@ -433,18 +434,19 @@ input:-ms-input-placeholder {
 
 .home-bg .header-details{
 	padding-top:220px;
-	color:#314a5b;
+    color:#fff;
 }
 .home-bg .header-details h1{
 	text-transform:uppercase;
 	font-family: 'montserratbold';
 	font-size:48px;
 	margin-bottom:20px;
-	line-height: 55px;
+    line-height: 55px;
+    text-shadow: 0 5px 0 #565656;
 }
 .home-bg .header-details h1 i{
 	font-size:7px;
-	color:#fa5c65;
+	color:#1ab188;
 }
 .home-bg .header-details p{
 	font-size:20px;
@@ -455,13 +457,13 @@ input:-ms-input-placeholder {
 	padding:10px;
 	width: 150px;
     height: 60px;
-	background:#fa5c65;
+	background:#1ab188;
 	color:white;
 	font-size:15px;
 	margin-top:30px;
 }
 .home-bg .header-details button:hover{
-	background:#cf0f1a;
+	background:rgb(26, 139, 109);
 	color:white;
 }
 .btn-default{

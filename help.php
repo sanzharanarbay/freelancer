@@ -18,7 +18,7 @@
         <title>Помощь</title>
         <meta name="description" content="">
         <meta name="viewport" content="initial-scale=1">
-         <link rel="shortcut icon" href="assets/images/logot.png" type="image/x-icon">
+         <link rel="shortcut icon" href="assets/images/logo.png" type="image/x-icon">
 
         <link rel="stylesheet" href="assets/css/bootstrap.css" type="text/css">
         <!--        <link rel="stylesheet" href="assets/css/bootstrap-theme.min.css">-->
@@ -42,7 +42,7 @@
 
         <style type="text/css">
         	
-        .dropbtn {
+          .dropbtn {
   background-color: #4CAF50;
   color: white;
   padding: 5px;
@@ -57,6 +57,7 @@
 }
 
 .dropdown-content {
+	right: 0;
   display: none;
   position: absolute;
   background-color: #f9f9f9;
@@ -81,6 +82,22 @@
 .dropdown:hover .dropbtn {
   background-color: #3e8e41;
 }
+.searchbox{
+	height:35px;
+	margin-right:20px;
+}
+.navbar-nav .mr-auto{
+padding-top:0;
+margin-top:0;
+}
+h5{
+  float:left;
+}
+p{
+  float:left;
+  color:blue;
+}
+
         </style>
     </head>
     <body>
@@ -88,26 +105,26 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 		
-		<div class='preloader'><div class='loaded'>&nbsp;</div></div>
-         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark menu">
-  <a class="navbar-brand" href="index.php"><img src="assets/images/logot.png" width="50" alt="Logo">&nbsp; Freelancer.kz </a>
+        <div class='preloader'><div class='loaded'>&nbsp;</div></div>
+         <nav class="navbar navbar-expand-md  fixed-top mainmenu">
+  <a class="navbar-brand" href="index.php"><img src="assets/images/logo2.png" height="30" alt="Logo"> </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="index.php">Главная</a>
+        <a class="nav-link" href="index.php">Главная </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="vacancies.php">Заказы</a>
+      <li class="nav-item ">
+        <a class="nav-link" href="vacancies.php">Заказы </a>
       </li>
-      <li class="nav-item  active">
-        <a class="nav-link" href="help.php">Помощь<span class="sr-only">(current)</span></a>
+      <li class="nav-item active">
+        <a class="nav-link" href="help.php">Помощь <span class="sr-only">(current)</span></a>
       </li>
-    </ul>
-    <form class="form-inline mt-2 mt-md-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+		</ul>
+    <form class="form-inline">
+      <input class="form-control searchbox" type="text" placeholder="Search" aria-label="Search">
     </form>
     <div class="content">
   	<!-- notification message -->
@@ -125,7 +142,7 @@
       <a href="index.php?logout='1'" style="color: red;">Выход</a>
 	<?php }else if($_SESSION['role_id']==4){?>
 		<a href="#">Профиль</a>
-	  <a href="#">Найти заказ</a>
+	  <a href="searchvacancy.php">Найти заказ</a>
 		<a href="index.php?logout='1'" style="color: red;">Выход</a>
 	<?php }?>
   </div>
@@ -144,54 +161,44 @@
 
         <!--Home page style-->
        
-
+    <section class="sections">
         <div class="container">
     <!-- Example row of columns -->
-    <div class="row">
-      <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-      </div>
-      <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-      </div>
-      <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-      </div>
+    <div class="text-center">
+    <center>
+    <br>
+    <br>
+    <br>
+    <br>
+     <h1>Часто задаваемые вопросы</h1>
+     <h5> <b>1.    Является ли сайт бесплатным?</b></h5>
+     <p>Сайт freelancer.kz является бесплатным. Каждый зарегистрированный пользователь имеет возможность полноценно<br>
+      пользоваться сайтом. Наша философия заключается в том, чтобы давать всем равные возможности, а не искусственно <br>
+      ограничивать, а потом снимать ограничения за плату.</p>
+      <h5> <b>2.    При регистрации я должен указать свой e-mail, не будет ли приходить на него спам?</b></h5>
+      <p>Введенный вам адрес e-mail будет использован исключительно в рамках сайта. Указанные вами публичные контатные <br>
+      данные будут доступны только зарегистрированным пользователям сайта,  Ваш почтовый адрес, а также любая другая контактная <br>
+       информация, не при каких обстоятельствах будут переданы третьим лицам или использованы для нецелевых почтовых рассылок.</p>
+       <h5> <b> 3.    У меня есть отличная идея по улучшению сайта, сможете ли вы ее реализовать?</b></h5>
+       <p>Безусловно, мы очень рады вашим идеям, ведь сайт работает для вас! Вы можете предложить свою идею — если нам она <br>
+       понравится, она обязательно будет воплощена в жизнь.</p>
+       <h5> <b> 4.    Я по ошибке зарегистрировался как Заказчик, но я Фрилансер. Что делать?</b></h5>
+       <p>Просто напишите письмо в службу поддержки, указав ваш логин и нужный тип профиля.</p>
+       <h5> <b> 5.    Я хотел бы не только работать на сервисе как фрилансер, но также и периодически размещать проекты. <br>
+        Могу ли я зарегистрировать дополнительный профиль заказчика?</b></h5>
+        <p>Да, вы может зарегистрировать один профиль заказчика и один профиль фрилансера. Нужно указать разные e-mail <br>
+        адреса при  регистрации профилей. Или можете написать письмо в службу поддержки, указав ваш логин. Мы сможем <br>
+        открыть Вам доступ для размещения проектов.  </p>
+     </center>
     </div>
+    </section>
 
-    <hr>
 
   </div> <!-- /container -->
 
-     <div class="container">
-    <!-- Example row of columns -->
-    <div class="row">
-      <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-      </div>
-      <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-      </div>
-      <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-      </div>
-    </div>
+    
 
-    <hr>
-
-  </div> <!-- /container -->
+ 
 
 		
 		<div class="scroll-top">
