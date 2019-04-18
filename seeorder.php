@@ -145,6 +145,7 @@
 	<?php }else if($_SESSION['role_id']==4){?>
 		<a href="#">Профиль</a>
 	  <a href="searchvacancy.php">Найти заказ</a>
+    <a href="myresponses.php">Мои отклики</a>
 		<a href="index.php?logout='1'" style="color: red;">Выход</a>
 	<?php }?>
   </div>
@@ -206,7 +207,7 @@ if(isset($vacancy)&&$vacancy!=null){
     <input type="hidden" name="vacancy_id" value="<?php echo $vacancy['v_id']?>">
     <input type="hidden" name="freelancer_id" value="<?php echo $_SESSION['user_id']?>">
     <input type="hidden" name="customer_id" value="<?php echo $vacancy['id']?>">
-    <button type="submit" class="btn btn-success btn-md"> Откликнуться</button>
+    <button type="submit" class="btn btn-success btn-md" name="respond_vacancy"> Откликнуться</button>
     </form>
     <br>
     

@@ -137,6 +137,7 @@
 	<?php }else if($_SESSION['role_id']==4){?>
 		<a href="#">Профиль</a>
 	  <a href="searchvacancy.php">Найти заказ</a>
+    <a href="myresponses.php">Мои отклики</a>
 		<a href="index.php?logout='1'" style="color: red;">Выход</a>
 	<?php }?>
   </div>
