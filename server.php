@@ -136,13 +136,15 @@ if (isset($_POST['login_user'])) {
   }
 
   if (count($errors) == 0) {
+    $pass = $password;
   	$password = md5($password);
     
   	$query = "SELECT * FROM users WHERE username='$username' AND password='$password'";
   	$results = mysqli_query($db, $query);
   	if (mysqli_num_rows($results) == 1) {
       while($row = mysqli_fetch_assoc($results)){
-  	  $_SESSION['username'] = $username;
+      $_SESSION['username'] = $username;
+      $_SESSION['password'] = $pass;
       $_SESSION['user_id'] = $row['id'];
       $_SESSION['role_id'] = $row['roleid'];
   	  $_SESSION['success'] = "Вы успешно зашли!!!";
@@ -201,12 +203,11 @@ if (isset($_POST['login_moderator'])) {
   
   if (count($errors) == 0) {
   	$password = md5($password);
-    
   	$query = "SELECT * FROM users WHERE username='$username' AND password='$password' AND roleid='$rol'";
   	$results = mysqli_query($db, $query);
   	if (mysqli_num_rows($results) == 1) {
       while($row = mysqli_fetch_assoc($results)){
-  	  $_SESSION['username'] = $username;
+      $_SESSION['username'] = $username;
       $_SESSION['user_id'] = $row['id'];
       $_SESSION['role_id'] = $row['roleid'];
   	  $_SESSION['success'] = "Вы успешно зашли!!!";

@@ -138,12 +138,12 @@
   <button class="btn btn-outline-success"><?php echo $_SESSION['username']; ?></button>
   <div class="dropdown-content">
   <?php if ($_SESSION['role_id']==3){?>
-   <a href="#">Профиль</a>
+   <a href="profile.php">Профиль</a>
    <a href="add_vacancy.php">Добавить заказ</a>
    <a href="myvacancies.php">Мои заказы</a>
       <a href="index.php?logout='1'" style="color: red;">Выход</a>
 	<?php }else if($_SESSION['role_id']==4){?>
-		<a href="#">Профиль</a>
+		<a href="profile.php">Профиль</a>
 	  <a href="searchvacancy.php">Найти заказ</a>
     <a href="myresponses.php">Мои отклики</a>
 		<a href="index.php?logout='1'" style="color: red;">Выход</a>

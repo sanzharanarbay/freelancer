@@ -15,10 +15,10 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Подробнее</title>
+        <title>Отклики</title>
         <meta name="description" content="">
         <meta name="viewport" content="initial-scale=1">
-         <link rel="shortcut icon" href="assets/images/logot.png" type="image/x-icon">
+         <link rel="shortcut icon" href="assets/images/logo.png" type="image/x-icon">
 
         <link rel="stylesheet" href="assets/css/bootstrap.css" type="text/css">
         <!--        <link rel="stylesheet" href="assets/css/bootstrap-theme.min.css">-->
@@ -34,6 +34,7 @@
 		
         <!--Theme custom css -->
         <link rel="stylesheet" href="assets/css/style.css" type="text/css">
+         <link rel="stylesheet" href="assets/css/pagination.css" type="text/css">
 
         <!--Theme Responsive css-->
         <link rel="stylesheet" href="assets/css/responsive.css" type="text/css">
@@ -90,9 +91,7 @@
 								padding-top:0;
 								margin-top:0;
 								}
-.vacancy{
-  margin-left:220px;
-}
+
         </style>
     </head>
     <body>
@@ -126,29 +125,26 @@
   	
 
     <!-- logged in user information -->
-    <?php  if (isset($_SESSION['username'])) { ?>
+    <?php  if (isset($_SESSION['username'])  && ($_SESSION['role_id']== 3)) { ?>
     	<div class="dropdown">
   <button class="btn btn-outline-success"><?php echo $_SESSION['username']; ?></button>
   <div class="dropdown-content">
   <?php if ($_SESSION['role_id']==3){?>
-   <a href="profile.php">Профиль</a>
-   <a href="add_vacancy.php">Новый заказ</a>
+   <a href="#">Профиль</a>
+   <a href="add_vacancy.php">Добавить заказ</a>
    <a href="myvacancies.php">Мои заказы</a>
       <a href="index.php?logout='1'" style="color: red;">Выход</a>
 	<?php }else if($_SESSION['role_id']==4){?>
-		<a href="profile.php">Профиль</a>
+		<a href="#">Профиль</a>
 	  <a href="searchvacancy.php">Найти заказ</a>
-    <a href="myresponses.php">Мои отклики</a>
+      <a href="myresponses.php">Мои отклики</a>
 		<a href="index.php?logout='1'" style="color: red;">Выход</a>
 	<?php }?>
   </div>
 </div>
-    <?php }else{  ?>
 
-    	<?php ?>
-
-			<a class="btn btn-outline-danger nav-link" href="login.php">Вход</a>
-    	 <?php  } ?>
+	
+    	
 	</div>
    
 	
@@ -162,58 +158,131 @@
         <section id="vacancies" class="sections">
         <?php
 include 'db.php';
-$vacancy = null;
 if(isset($_GET['id'])&&is_numeric($_GET['id'])){
-$query = $connection->prepare(" SELECT v.v_id, v.user_id, v.profession_id,  v.vacancy_name,v.requirements, v.price, v.v_country, v.v_city, v.post_date, p.p_id, p.name, u.id, u.username, c.country_id, c.country_name, ci.city_id, ci.city_name, s.s_id, s.status
-                     FROM vacancies v 
-                     LEFT OUTER JOIN professions p  ON p.p_id = v.profession_id
-                     LEFT OUTER JOIN users u  ON u.id = v.user_id
-                     LEFT OUTER JOIN countries c  ON c.country_id = v.v_country
-                     LEFT OUTER JOIN cities ci  ON ci.city_id = v.v_city
-                     LEFT OUTER JOIN status s   ON s.s_id = v.v_statusid
-                     WHERE v.v_id = :id LIMIT 1") or die($mysqli->error);
-    $query->execute(array('id'=>$_GET['id']));
-    $vacancy = $query->fetch();
-}
+ $start = 0;  $per_page = 5;
+    $page_counter = 0;
+    $next = $page_counter + 1;
+    $previous = $page_counter - 1;
+     if(isset($_GET['start'])){
+     $start = $_GET['start'];
+     $page_counter =  $_GET['start'];
+     $start = $start *  $per_page;
+     $next = $page_counter + 1;
+     $previous = $page_counter - 1;
+    }
+$query = $connection->prepare("SELECT r.r_id, r.r_vacid, r.r_freeid, r.r_custid, r.r_statusid,r.r_respdate,
+ v.v_id, v.vacancy_name, v.user_id, u.id, u.username, u.u_lastname, u.u_firstname, u.u_phonenumber ,
+  u.email,  st.st_id, st.st_status
+                     FROM responses r
+                     LEFT OUTER JOIN  vacancies v ON v.v_id = r.r_vacid 
+                     LEFT OUTER JOIN users u ON  u.id = r.r_freeid 
+                     LEFT OUTER JOIN statuses st ON st.st_id = r.r_statusid
+                     WHERE r.r_vacid = :vac_id
+                     ORDER BY r.r_respdate DESC
+                     LIMIT $start, $per_page") or die($mysqli->error);
+    $query->execute(array('vac_id'=>$_GET['id']));
+    $responses = $query->fetchAll();
+    $vacan_id = $_GET['id'];
+    $count_query = "SELECT * FROM responses WHERE r_vacid = '$vacan_id'";
+    $query1 = $connection->prepare($count_query);
+    $query1->execute();
+    $count = $query1->rowCount();
+     $paginations = ceil($count / $per_page);
+    }
 ?>
 
   <div class="container">
-  <br>
-  <br>
-  <br>
-  <br>
-  <center>
     <!-- Example row of columns -->
-     <div class="row vacancy">
-      <div class="col-md-8">
-     <?php
+    <?php
+if (isset($_SESSION['message'])): ?>
 
-                if(isset($vacancy)&&$vacancy!=null){
+<div class="alert alert-<?=$_SESSION['msg_type']?> myalert">
+    <?php
+    echo $_SESSION['message'];
+    unset($_SESSION['message']);
+    ?>
 
+</div>
+
+<?php endif ?>
+    <center>
+<table class="table mytable">
+  <thead>
+    <tr>
+      <th scope="col">Вакансия</th>
+      <th scope="col">Фрилансер</th>
+      <th scope="col">Дата отклика</th>
+      <th scope="col">Статус</th>
+      <th scope="col">О вакансии</th>
+      <th scope="col">Действие</th>
+    </tr>
+  </thead>
+  <tbody>
+  <br>
+  <?php
+            foreach ($responses as $response) {
                 ?>
-                <h3>   <?php  echo $vacancy['vacancy_name']. " , ".$vacancy['name']; ?></h3>
-                    <h4>   <?php  echo $vacancy['price']. " ". "KZT" ; ?> </h4>
-                    <h5>  <?php  echo $vacancy['country_name']; ?> ,  <?php  echo $vacancy['city_name']; ?></h5>
-                    <h6>  <?php  echo $vacancy['requirements']; ?></h6>
-                    <p style="color:#ba1a2f;">  Posted on <?php echo $vacancy['post_date'] ; ?> by <span style="color:blue;"><?php echo $vacancy['username'] ; ?></span></p>
-                    <br>
-                    <br>
-                    
-                <?php
+                <tr>
+      <th scope="row"> <?php  echo $response['vacancy_name']; ?></th>
+      <td> <?php  echo $response['u_firstname']. " ".$response['u_lastname']."<br>"."<b>".$response['username']."</b>" ?></td>
+      <td> <?php  echo $response['r_respdate']; ?></td>
+      <td> <?php  echo $response['st_status']; ?></td>
+      <td> <a href="readmore.php?id=<?php echo $response['v_id'] ?>" class="btn btn-outline-info btn-md"> О вакансии</a> </td>
+      <td>
+        <form action="to_check_response.php" method="post"  id="check_vacancy_id" novalidate>
+          <input type="hidden" name="vac_id" value="<?php echo $response['r_vacid']?>">
+          <input type="hidden" name="free_id" value="<?php echo $response['r_freeid']?>">
+          <input type="hidden" name="status_id"  id="r_status" value="3">        
+          <input type="submit" class="btn btn-outline-success sm" name="accept_vacancy" value="Принимать"> 
+          <br>
+            </form>
+            <br>
+            <form action="to_check_response.php" method="post"  id="check_vacancy_id" novalidate>
+          <input type="hidden" name="vac_id" value="<?php echo $response['r_vacid']?>">
+          <input type="hidden" name="free_id" value="<?php echo $response['r_freeid']?>">
+          <input type="hidden" name="status_id"  id="r_status" value="4">        
+          <input type="submit" class="btn btn-outline-danger sm" name="reject_vacancy" value="Отказать"> 
+            </form>
+      </td>
+    </tr>
+                     <?php
+            }
+            ?>
+    
+  </tbody>
+</table>
+<br>
+<br>
+</center>
+   <center>
+            <ul class="pagination">
+            <?php
+                if($page_counter == 0){
+                    echo "<li><a href=?start='0' class='active'>0</a></li>";
+                    for($j=1; $j < $paginations; $j++) { 
+                      echo "<li><a href=?start=$j>".$j."</a></li>";
+                   }
                 }else{
-
-                echo  "<h1> 404 VACANCY NOT FOUND!!!   </h1>";
-
-                }
-                ?>
-   
-    </div>
-  </div>
-  </center>
+                    echo "<li><a href=?start=$previous>Previous</a></li>"; 
+                    for($j=0; $j < $paginations; $j++) {
+                     if($j == $page_counter) {
+                        echo "<li><a href=?start=$j class='active'>".$j."</a></li>";
+                     }else{
+                        echo "<li><a href=?start=$j>".$j."</a></li>";
+                     } 
+                  }if($j != $page_counter+1)
+                    echo "<li><a href=?start=$next>Next</a></li>"; 
+                } 
+            ?>
+            </ul>
+            </center>   
   </div> <!-- /container -->
  </section>
     <hr>
-
+    <?php }else{ 
+  header("location:404.php");
+}
+  ?>
   
 
 		
@@ -253,7 +322,8 @@ $query = $connection->prepare(" SELECT v.v_id, v.user_id, v.profession_id,  v.va
             </div>
         </footer>
 
-
+       
+</script>
         <script src="assets/js/vendor/jquery-1.11.2.min.js"></script>
         <script src="assets/js/vendor/bootstrap.min.js"></script>
 

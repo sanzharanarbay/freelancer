@@ -18,7 +18,7 @@
         <title>Добавить заказ</title>
         <meta name="description" content="">
         <meta name="viewport" content="initial-scale=1">
-         <link rel="shortcut icon" href="assets/images/logot.png" type="image/x-icon">
+        <link rel="shortcut icon" href="assets/images/logo.png" type="image/x-icon">
 
         <link rel="stylesheet" href="assets/css/bootstrap.css" type="text/css">
         <!--        <link rel="stylesheet" href="assets/css/bootstrap-theme.min.css">-->
@@ -181,13 +181,13 @@ margin-top:0;
   <button class="btn btn-outline-success"><?php echo $_SESSION['username']; ?></button>
   <div class="dropdown-content">
   <?php if ($_SESSION['role_id']==3){?>
-   <a href="#">Помощь</a>
+   <a href="profile.php">Профиль</a>
    <a href="add_vacancy.php">Добавить заказ</a>
    <a href="myvacancies.php">Мои заказы</a>
       <a href="index.php?logout='1'" style="color: red;">Выход</a>
 	<?php }else if($_SESSION['role_id']==4){?>
-		<a href="#">Профиль</a>
-	  <a href="#">Найти заказ</a>
+		<a href="profile.php">Профиль</a>
+	  <a href="searchvacancy.php">Найти заказ</a>
 		<a href="index.php?logout='1'" style="color: red;">Выход</a>
 	<?php }?>
   </div>

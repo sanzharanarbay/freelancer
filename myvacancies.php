@@ -94,6 +94,21 @@
                 .pagination{
                   margin-left:100px;
                 }
+                #itemCount {
+                  padding: 0;
+                  text-align: center;
+                }
+                #itemCount p{
+                  margin: 0 0 0 10px;
+                  float: right;
+                  width:20px;
+                  height:20px;
+                  background: #FFDD40;
+                  border-radius: 50%;
+                  color: #000;
+
+               }
+                  
 
         </style>
     </head>
@@ -132,12 +147,12 @@
   <button class="btn btn-outline-success"><?php echo $_SESSION['username']; ?></button>
   <div class="dropdown-content">
   <?php if ($_SESSION['role_id']==3){?>
-   <a href="#">Профиль</a>
+   <a href="profile.php">Профиль</a>
    <a href="add_vacancy.php">Новый заказ</a>
    <a href="myvacancies.php">Мои заказы</a>
       <a href="index.php?logout='1'" style="color: red;">Выход</a>
 	<?php }else if($_SESSION['role_id']==4){?>
-		<a href="#">Профиль</a>
+		<a href="profile.php">Профиль</a>
 	  <a href="#">Найти заказ</a>
 		<a href="index.php?logout='1'" style="color: red;">Выход</a>
 	<?php }?>
@@ -221,6 +236,13 @@ if (isset($_SESSION['message'])): ?>
  <?php
             foreach ($vacancies as $vacancy) {
                 ?>
+                <?php 
+                    $vacan_id = $vacancy['v_id'];
+                    $nquery = "SELECT * FROM responses WHERE r_vacid = '$vacan_id'";
+                    $query2 = $connection->prepare($nquery);
+                    $query2->execute();
+                    $ncount = $query2->rowCount();
+                    ?>  
                 <div class="card mb-4">
                   <div class="card-body">
                 <h4>   <?php  echo $vacancy['vacancy_name']; ?></h4>
@@ -228,7 +250,12 @@ if (isset($_SESSION['message'])): ?>
                     <b>   <?php  echo $vacancy['name']; ?> </b>
                     <p>  <?php  echo $vacancy['country_name']; ?>, &nbsp; <?php  echo $vacancy['city_name']; ?> </p>
                     <p>  <?php  echo $vacancy['status']; ?></p>
-                    <a href="editvacancy.php?id=<?php echo $vacancy['v_id'] ?>" class="btn btn-primary btn-sm">Изменить заказ</a>
+                    <a href="editvacancy.php?id=<?php echo $vacancy['v_id'] ?>" class="btn btn-outline-primary btn-sm">Изменить заказ</a>
+                    &nbsp; &nbsp; &nbsp; 
+                    <a href="custresponse.php?id=<?php echo $vacancy['v_id'] ?>" class="btn btn-outline-danger btn-sm">Отклики на заказов
+                     <span id="itemCount"><p><?php echo $ncount; ?></p></span>
+                    </a>
+                   
                      </div>
                      <div class="card-footer text-muted">
                     <b>  Posted on <?php echo $vacancy['post_date'] ; ?> by <?php echo $vacancy['username'] ; ?></b>

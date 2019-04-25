@@ -130,12 +130,12 @@
   <button class="btn btn-outline-success"><?php echo $_SESSION['username']; ?></button>
   <div class="dropdown-content">
   <?php if ($_SESSION['role_id']==3){?>
-   <a href="#">Профиль</a>
+   <a href="profile.php">Профиль</a>
    <a href="add_vacancy.php">Добавить заказ</a>
    <a href="myvacancies.php">Мои заказы</a>
       <a href="index.php?logout='1'" style="color: red;">Выход</a>
 	<?php }else if($_SESSION['role_id']==4){?>
-		<a href="#">Профиль</a>
+		<a href="profile.php">Профиль</a>
 	  <a href="searchvacancy.php">Найти заказ</a>
       <a href="myresponses.php">Мои отклики</a>
 		<a href="index.php?logout='1'" style="color: red;">Выход</a>
@@ -180,8 +180,9 @@ $query = $connection->prepare("SELECT r.r_id, r.r_vacid, r.r_freeid, r.r_custid,
                      ORDER BY r.r_respdate DESC
                      LIMIT $start, $per_page") or die($mysqli->error);
     $query->execute(array('freelancer_id'=>$_SESSION['user_id']));
+    $freeid = $_SESSION['user_id'];
     $responses = $query->fetchAll();
-    $count_query = "SELECT * FROM responses";
+    $count_query = "SELECT * FROM responses WHERE r_freeid = '$freeid'";
     $query1 = $connection->prepare($count_query);
     $query1->execute();
     $count = $query1->rowCount();
@@ -213,7 +214,7 @@ if (isset($_SESSION['message'])): ?>
       <th scope="col">Статус</th>
       <th scope="col">Контакты</th>
       <th scope="col">О вакансии</th>
-      <th scope="col">Удалить</th>
+      <th scope="col">Отменить</th>
     </tr>
   </thead>
   <tbody>
@@ -231,7 +232,7 @@ if (isset($_SESSION['message'])): ?>
       <td>
         <form action="to_delete_response.php" method="post" id="deletem">
           <input type="hidden" name="response_id" value="<?php echo $response['r_id']?>">
-        <input type="submit" class="btn btn-outline-danger"  value="Удалить" onclick="return confirmDelete();"> 
+        <input type="submit" class="btn btn-outline-danger"  value="Отменить" onclick="return confirmDelete();"> 
             </form>
       </td>
     </tr>
