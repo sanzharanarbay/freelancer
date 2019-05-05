@@ -1,6 +1,6 @@
 <?php 
   session_start(); 
-
+  if (isset($_SESSION['username'])  && ($_SESSION['role_id']== 4)) { 
   if (isset($_GET['logout'])) {
   	session_destroy();
   	unset($_SESSION['username']);
@@ -133,7 +133,7 @@
   	
 
     <!-- logged in user information -->
-    <?php  if (isset($_SESSION['username'])  && ($_SESSION['role_id']== 4)) { ?>
+    
     	<div class="dropdown">
   <button class="btn btn-outline-success"><?php echo $_SESSION['username']; ?></button>
   <div class="dropdown-content">
@@ -170,6 +170,7 @@
 <?php
 include 'db.php';
 $vac_id = 0;
+$statusid = 3;
  if(isset($_GET['id'])&&is_numeric($_GET['id'])){
 $query = $connection->prepare(" SELECT v.v_id, v.user_id, v.profession_id,  v.vacancy_name,v.requirements, v.price,v.v_country, v.v_state, v.v_city, v.v_statusid,  v.post_date, p.p_id, p.name, u.id, u.username, u.u_lastname, u.u_firstname, u.email, u.u_phonenumber, c.country_id, c.country_name, ci.city_id, ci.city_name, s.s_id, s.status
                      FROM vacancies v 
@@ -178,8 +179,9 @@ $query = $connection->prepare(" SELECT v.v_id, v.user_id, v.profession_id,  v.va
                      LEFT OUTER JOIN countries c  ON c.country_id = v.v_country
                      LEFT OUTER JOIN cities ci  ON ci.city_id = v.v_city
                      LEFT OUTER JOIN status s   ON s.s_id = v.v_statusid
-                     WHERE v.v_id = :id LIMIT 1") or die($mysqli->error);
-    $query->execute(array('id'=>$_GET['id']));
+                     WHERE v.v_id = :id AND v.v_statusid = :status_id
+                     LIMIT 1") or die($mysqli->error);
+    $query->execute(array('id'=>$_GET['id'], 'status_id'=>$statusid));
     $vacancy = $query->fetch();
 }
 

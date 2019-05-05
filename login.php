@@ -4,7 +4,7 @@
 <head>
 <title>Вход</title>
   <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="shortcut icon" href="assets/images/logot.png" type="image/x-icon">
+  <link rel="shortcut icon" href="assets/images/logo.png" type="image/x-icon">
   <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
   <link rel="stylesheet" href="assets/css/login.css"> 

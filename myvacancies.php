@@ -1,6 +1,6 @@
 <?php 
   session_start(); 
-
+  if (isset($_SESSION['username']) && ($_SESSION['role_id']==3)) {
   if (isset($_GET['logout'])) {
   	session_destroy();
   	unset($_SESSION['username']);
@@ -142,7 +142,7 @@
   	
 
     <!-- logged in user information -->
-    <?php  if (isset($_SESSION['username'])) { ?>
+    
     	<div class="dropdown">
   <button class="btn btn-outline-success"><?php echo $_SESSION['username']; ?></button>
   <div class="dropdown-content">
@@ -158,12 +158,9 @@
 	<?php }?>
   </div>
 </div>
-    <?php }else{  ?>
+    
 
-    	<?php ?>
-
-			<a class="btn btn-outline-danger nav-link" href="login.php">Вход</a>
-    	 <?php  } ?>
+    
 	</div>
    
 	
@@ -211,7 +208,7 @@ $query = $connection->prepare(" SELECT v.v_id, v.user_id, v.profession_id,  v.va
 }
 
 ?>
-  <?php if ($_SESSION['role_id']==3){ ?>
+  
   <section id="vacancies" class="sections">
   	
   <div class="container">
@@ -295,16 +292,10 @@ if (isset($_SESSION['message'])): ?>
   
  </section>
     <hr>
-    <?php }else{ ?>
-      <section id="vacancy" class="sections">
-      <div class="container">
-      <br>
-      <br>
-    <h1> Error! You don't have access to this page!!!!  </h1> 
-
-  </div>
-    </section>
-    <?php } ?>
+    <?php }else{ 
+  header("location:404.php");
+}
+  ?>
   
 
 		

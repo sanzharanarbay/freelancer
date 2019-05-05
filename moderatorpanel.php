@@ -26,7 +26,7 @@
     
     <!-- Custom styles for this template -->
     <link href="assets/css/dashboard.css" rel="stylesheet">
-    <link rel="shortcut icon" href="assets/images/logot.png" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/images/logo.png" type="image/x-icon">
     <style type="text/css">
         	
           .dropbtn {
@@ -74,15 +74,15 @@
   <body>
   <?php  if (isset($_SESSION['username']) && ($_SESSION['role_id']==2)) { ?>
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="adminpanel.php"><img src="assets/images/logo2.png" height="30" alt="Logo"></a>
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="moderatorpanel.php"><img src="assets/images/logo2.png" height="30" alt="Logo"></a>
   <input class="form-control form-control-dark w-70" type="text" placeholder="Search" aria-label="Search">&nbsp;&nbsp;&nbsp;
   <?php  if (isset($_SESSION['username'])) { ?>
     <div class="dropdown">
     <button class="btn btn-outline-success"><?php echo $_SESSION['username']; ?></button>
     <div class="dropdown-content">
-    <a href="#">Профиль</a>
-   <a href="#">Список заказов</a>
-   <a href=#">Статус заказов</a>
+    <a href="moderatorprofile.php">Профиль</a>
+   <a href="orderlist.php">Список заказов</a>
+   <a href="#">Статус заказов</a>
       <a href="index.php?logout='1'" style="color: red;">Выход</a>
       </div>
 </div>
@@ -101,7 +101,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="moderatorprofile.php">
               <span data-feather="file"></span>
               Профиль
             </a>

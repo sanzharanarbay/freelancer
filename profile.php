@@ -1,5 +1,5 @@
     <?php 
-    session_start();
+ include('to_edit_profile.php') ;
   if (isset($_GET['logout'])) {
   	session_destroy();
   	unset($_SESSION['username']);
@@ -235,6 +235,7 @@ ci.city_id, ci.city_name, s.state_id, s.state_name
 ?>
 
 <div class="container">
+
     <div class="row my-2">
         <div class="col-lg-8 order-lg-2">
             <ul class="nav nav-tabs">
@@ -250,12 +251,13 @@ ci.city_id, ci.city_name, s.state_id, s.state_name
             </ul>
             <div class="tab-content py-4">
                 <div class="tab-pane active" id="profile">
-                    <h5 class="mb-3">User Profile</h5>
+                <?php include('errors.php'); ?>
+                    <h5 class="mb-3"><?php echo $user['u_firstname']." ". $user['u_lastname']; ?></h5>
                     <div class="row">
                         <div class="col-md-6">
-                            <h6>About</h6>
-                            <p>
-                                Web Designer, UI/UX Engineer
+                            <h6>Контакты</h6>
+                            <p style="color:blue;">
+                               <?php echo $user['u_phonenumber']. " ".$user['email']; ?>
                             </p>
                             <h6>Hobbies</h6>
                             <p>
@@ -263,19 +265,10 @@ ci.city_id, ci.city_name, s.state_id, s.state_name
                             </p>
                         </div>
                         <div class="col-md-6">
-                            <h6>Recent badges</h6>
-                            <a href="#" class="badge badge-dark badge-pill">html5</a>
-                            <a href="#" class="badge badge-dark badge-pill">react</a>
-                            <a href="#" class="badge badge-dark badge-pill">codeply</a>
-                            <a href="#" class="badge badge-dark badge-pill">angularjs</a>
-                            <a href="#" class="badge badge-dark badge-pill">css3</a>
-                            <a href="#" class="badge badge-dark badge-pill">jquery</a>
-                            <a href="#" class="badge badge-dark badge-pill">bootstrap</a>
-                            <a href="#" class="badge badge-dark badge-pill">responsive-design</a>
-                            <hr>
-                            <span class="badge badge-primary"><i class="fa fa-user"></i> 900 Followers</span>
-                            <span class="badge badge-success"><i class="fa fa-cog"></i> 43 Forks</span>
-                            <span class="badge badge-danger"><i class="fa fa-eye"></i> 245 Views</span>
+                            <h6> Привелегия</h6>
+                           
+                            <span class="badge badge-primary"><i class="fa fa-user"></i>&nbsp;<?php echo  $user['r_name']; ?> </span>
+                           
                         </div>
                         <div class="col-md-12">
                             <h5 class="mt-2"><span class="fa fa-clock-o ion-clock float-right"></span> Recent Activity</h5>
@@ -313,9 +306,18 @@ ci.city_id, ci.city_name, s.state_id, s.state_name
                     <!--/row-->
                 </div>
                 <div class="tab-pane" id="messages">
-                    <div class="alert alert-info alert-dismissable">
-                        <a class="panel-close close" data-dismiss="alert">×</a> This is an <strong>.alert</strong>. Use this to show important messages to the user.
-                    </div>
+                <?php
+                if (isset($_SESSION['messages'])): ?>
+
+                <div class="alert alert-<?=$_SESSION['msg_types']?>">
+                    <?php
+                    echo $_SESSION['messages'];
+                    unset($_SESSION['messages']);
+                    ?>
+
+                </div>
+
+                <?php endif ?>
                     <table class="table table-hover table-striped">
                         <tbody>                                    
                             <tr>
@@ -347,56 +349,57 @@ ci.city_id, ci.city_name, s.state_id, s.state_name
                     </table>
                 </div>
                 <div class="tab-pane" id="edit">
-                    <form role="form">
+                    <form method="post" action="profile.php">
+                    <input type="hidden" name="userid" value="<?php echo $userid; ?>">
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label">Имя</label>
                             <div class="col-lg-9">
-                                <input class="form-control" type="text" value="<?php echo $user['u_firstname'];?>">
+                                <input class="form-control" type="text" name="ufirstname" value="<?php echo $user['u_firstname'];?>">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label">Фамилия</label>
                             <div class="col-lg-9">
-                                <input class="form-control" type="text" value="<?php echo $user['u_lastname'];?>">
+                                <input class="form-control" type="text" name="ulastname" value="<?php echo $user['u_lastname'];?>">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label">Email</label>
                             <div class="col-lg-9">
-                                <input class="form-control" type="email" value="<?php echo $user['email'];?>">
+                                <input class="form-control" type="email" name="uemail" value="<?php echo $user['email'];?>">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label">Телефон</label>
                             <div class="col-lg-9">
-                                <input id="phone" class="form-control" type="text" value="<?php echo $user['u_phonenumber'];?>" maxlength="12">
+                                <input id="phone" class="form-control" type="text" name="uphonenumber" value="<?php echo $user['u_phonenumber'];?>" maxlength="12">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label">Адрес</label>
                             <div class="col-lg-9">
-                                <input class="form-control" type="text" value="<?php echo $user['country_name'];?>" placeholder="Страна">
+                                <input class="form-control" type="text" value="<?php echo $user['country_name'];?>" placeholder="Страна" disabled>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label"></label>
                             <div class="col-lg-6">
-                                <input class="form-control" type="text" value="<?php echo $user['city_name'];?>" placeholder="Город">
+                                <input class="form-control" type="text" value="<?php echo $user['city_name'];?>" placeholder="Город" disabled>
                             </div>
                             <div class="col-lg-3">
-                                <input class="form-control" type="text" value="<?php echo $user['state_name'];?>" placeholder="Регион">
+                                <input class="form-control" type="text" value="<?php echo $user['state_name'];?>" placeholder="Регион" disabled>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Username</label>
+                            <label class="col-lg-3 col-form-label form-control-label">Имя пользователя</label>
                             <div class="col-lg-9">
                                 <input class="form-control" type="text" value="<?php echo $user['username'];?>" disabled>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Password</label>
+                            <label class="col-lg-3 col-form-label form-control-label">Пароль</label>
                             <div class="col-lg-9">
-                                <input id="password" class="form-control" type="password" value="<?php echo $pass;?>">
+                                <input id="password" class="form-control" type="password"  name="upassword_1" value="<?php echo $pass;?>" minlength="8">
                                 <label class="showpass">
                                     <input type="checkbox" id="methods" />
                                     <i class="far fa-eye"></i>
@@ -405,9 +408,9 @@ ci.city_id, ci.city_name, s.state_id, s.state_name
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Confirm password</label>
+                            <label class="col-lg-3 col-form-label form-control-label">Повторите пароль</label>
                             <div class="col-lg-9">
-                                <input class="form-control" id="c-password" type="password" value="<?php echo $pass;?>">
+                                <input class="form-control" id="c-password" type="password" name="upassword_2" value="<?php echo $pass;?>" minlength="8">
                                 <label class="showpass">
                                     <input type="checkbox" id="c-methods" />
                                     <i class="far fa-eye"></i>
@@ -418,8 +421,8 @@ ci.city_id, ci.city_name, s.state_id, s.state_name
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label"></label>
                             <div class="col-lg-9">
-                                <input type="reset" class="btn btn-secondary" value="Cancel">
-                                <input type="button" class="btn btn-primary" value="Save Changes">
+                                <button type="reset" class="btn btn-secondary"> Отмена</button>
+                                <button type="submit" class="btn btn-primary"  name="edit_profile"> Сохранить изменения</button>
                             </div>
                         </div>
                     </form>

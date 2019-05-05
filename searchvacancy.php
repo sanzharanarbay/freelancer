@@ -1,6 +1,6 @@
 <?php 
   session_start(); 
-
+   if (isset($_SESSION['username'])  && ($_SESSION['role_id']== 4)) {
   if (isset($_GET['logout'])) {
   	session_destroy();
   	unset($_SESSION['username']);
@@ -125,7 +125,7 @@
   	
 
     <!-- logged in user information -->
-    <?php  if (isset($_SESSION['username'])  && ($_SESSION['role_id']== 4)) { ?>
+    
     	<div class="dropdown">
   <button class="btn btn-outline-success"><?php echo $_SESSION['username']; ?></button>
   <div class="dropdown-content">

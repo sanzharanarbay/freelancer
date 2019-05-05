@@ -1,6 +1,7 @@
 <?php 
-  session_start(); 
 
+  session_start(); 
+ if (isset($_SESSION['username'])  && ($_SESSION['role_id']== 3)) {
   if (isset($_GET['logout'])) {
   	session_destroy();
   	unset($_SESSION['username']);
@@ -125,7 +126,7 @@
   	
 
     <!-- logged in user information -->
-    <?php  if (isset($_SESSION['username'])  && ($_SESSION['role_id']== 3)) { ?>
+    
     	<div class="dropdown">
   <button class="btn btn-outline-success"><?php echo $_SESSION['username']; ?></button>
   <div class="dropdown-content">
@@ -177,10 +178,10 @@ $query = $connection->prepare("SELECT r.r_id, r.r_vacid, r.r_freeid, r.r_custid,
                      LEFT OUTER JOIN  vacancies v ON v.v_id = r.r_vacid 
                      LEFT OUTER JOIN users u ON  u.id = r.r_freeid 
                      LEFT OUTER JOIN statuses st ON st.st_id = r.r_statusid
-                     WHERE r.r_vacid = :vac_id
+                     WHERE r.r_vacid = :vac_id AND r.r_custid = :cust_id
                      ORDER BY r.r_respdate DESC
                      LIMIT $start, $per_page") or die($mysqli->error);
-    $query->execute(array('vac_id'=>$_GET['id']));
+    $query->execute(array('vac_id'=>$_GET['id'], 'cust_id'=>$_SESSION['user_id']));
     $responses = $query->fetchAll();
     $vacan_id = $_GET['id'];
     $count_query = "SELECT * FROM responses WHERE r_vacid = '$vacan_id'";
@@ -206,6 +207,7 @@ if (isset($_SESSION['message'])): ?>
 
 <?php endif ?>
     <center>
+    <?php if(isset($responses)&&$responses!=null){ ?>
 <table class="table mytable">
   <thead>
     <tr>
@@ -219,6 +221,7 @@ if (isset($_SESSION['message'])): ?>
   </thead>
   <tbody>
   <br>
+  
   <?php
             foreach ($responses as $response) {
                 ?>
@@ -276,6 +279,10 @@ if (isset($_SESSION['message'])): ?>
             ?>
             </ul>
             </center>   
+              <?php }else{
+                  echo  "<h1> ACCESS DENIED!!!   </h1>";
+                }
+                ?>
   </div> <!-- /container -->
  </section>
     <hr>

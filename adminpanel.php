@@ -80,9 +80,9 @@
     <div class="dropdown">
     <button class="btn btn-outline-success"><?php echo $_SESSION['username']; ?></button>
     <div class="dropdown-content">
-    <a href="#">Профиль</a>
-   <a href="#">Добавить модератора</a>
-   <a href=#">Список Модераторов</a>
+    <a href="adminprofile.php">Профиль</a>
+   <a href="addmoderator.php">Добавить модератора</a>
+   <a href="moderatorlist.php">Список Модераторов</a>
       <a href="index.php?logout='1'" style="color: red;">Выход</a>
       </div>
 </div>
@@ -101,7 +101,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="adminprofile.php">
               <span data-feather="file"></span>
               Профиль
             </a>

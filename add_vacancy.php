@@ -1,6 +1,6 @@
 <?php 
   session_start(); 
-
+ if (isset($_SESSION['username']) && ($_SESSION['role_id']==3)) {
   if (isset($_GET['logout'])) {
   	session_destroy();
   	unset($_SESSION['username']);
@@ -176,7 +176,7 @@ margin-top:0;
   	
 
     <!-- logged in user information -->
-    <?php  if (isset($_SESSION['username'])) { ?>
+   
     	<div class="dropdown">
   <button class="btn btn-outline-success"><?php echo $_SESSION['username']; ?></button>
   <div class="dropdown-content">
@@ -192,12 +192,7 @@ margin-top:0;
 	<?php }?>
   </div>
 </div>
-    <?php }else{  ?>
-
-    	<?php ?>
-
-			<a class="btn btn-outline-danger nav-link" href="login.php">Вход</a>
-    	 <?php  } ?>
+   
 	</div>
    
 	
@@ -205,7 +200,7 @@ margin-top:0;
 </nav>
 
         <!--Home page style-->
-    <?php if ($_SESSION['role_id']==3){ ?>
+    
         <!-- Sections -->
        <section id="newvacancy" class="sections">
        	
@@ -286,16 +281,10 @@ margin-top:0;
            
        	</div>
        </section>
-       <?php }else{ ?>
-      <section id="vacancy" class="sections">
-      <div class="container">
-      <br>
-      <br>
-    <h1> Error! You don't have access to this page!!!!  </h1> 
-
-  </div>
-    </section>
-    <?php } ?>
+       <?php }else{ 
+  header("location:404.php");
+}
+  ?>
 		<div class="scroll-top">
 		
 			<div class="scrollup">

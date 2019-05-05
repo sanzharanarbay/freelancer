@@ -15,13 +15,14 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Список заказов</title>
+    <title>Профиль Модератора</title>
 
   
 
     <!-- Bootstrap core CSS -->
 <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/orderlist.css" type="text/css">
+
+
     
     <!-- Custom styles for this template -->
     <link href="assets/css/dashboard.css" rel="stylesheet">
@@ -68,13 +69,6 @@
   .dropdown:hover .dropbtn {
     background-color: #3e8e41;
   }
-  .cards{
-      position:absolute;
-      top:100px;
-      left:300px;
-  }
- 
- 
           </style>
   </head>
   <body>
@@ -96,7 +90,7 @@
 </nav>
 
 <div class="container-fluid">
-<div class="row">
+  <div class="row">
     <nav class="col-md-2 d-none d-md-block bg-light sidebar">
       <div class="sidebar-sticky">
         <ul class="nav flex-column">
@@ -146,93 +140,6 @@
   </div>
 </div>
 
-<?php
-include 'db.php';
- $start = 0;  $per_page = 5;
-    $page_counter = 0;
-    $next = $page_counter + 1;
-    $previous = $page_counter - 1;
-     if(isset($_GET['start'])){
-     $start = $_GET['start'];
-     $page_counter =  $_GET['start'];
-     $start = $start *  $per_page;
-     $next = $page_counter + 1;
-     $previous = $page_counter - 1;
-    }
-$query = $connection->prepare(" SELECT v.v_id, v.user_id, v.profession_id,  v.vacancy_name,v.requirements, v.price, v.v_country, v.v_city, v.post_date, p.p_id, p.name, u.id, u.username, c.country_id, c.country_name, ci.city_id, ci.city_name, s.s_id, s.status
-                     FROM vacancies v 
-                     LEFT OUTER JOIN professions p  ON p.p_id = v.profession_id
-                     LEFT OUTER JOIN users u  ON u.id = v.user_id
-                     LEFT OUTER JOIN countries c  ON c.country_id = v.v_country
-                     LEFT OUTER JOIN cities ci  ON ci.city_id = v.v_city
-                     LEFT OUTER JOIN status s   ON s.s_id = v.v_statusid
-                     ORDER BY v.post_date DESC
-                     LIMIT $start, $per_page") or die($mysqli->error);
-    $query->execute();
-    $vacancies = $query->fetchAll();
-    $count_query = "SELECT * FROM vacancies";
-    $query1 = $connection->prepare($count_query);
-    $query1->execute();
-    $count = $query1->rowCount();
-     $paginations = ceil($count / $per_page);
-
-?>
-
-<div class="container">
-<br>
-<br>
-<br>
-<br>
-<center>
-<div class="row">
-      <div class="col-md-8 cards">
-   
-    <?php
-            foreach ($vacancies as $vacancy) {
-                ?>
-                <div class="card border-primary mb-3">
-                <div class="card-header bg-transparent border-info">  <?php  echo $vacancy['vacancy_name']; ?> </div>
-                  <div class="card-body">
-                
-                <h5>   <?php  echo $vacancy['price']. " KZT"; ?></h5>
-                    <b>   <?php  echo $vacancy['name']; ?> </b>
-                    <p>  <?php  echo $vacancy['country_name']; ?> , &nbsp; <?php  echo $vacancy['city_name']; ?></p>
-                    <a href="checkorder.php?id=<?php echo $vacancy['v_id'] ?>" class="btn btn-outline-success btn-md">Проверить</a>
-                     </div>
-                     <div class="card-footer bg-transparent border-info">
-                    <b>  Posted on <?php echo $vacancy['post_date'] ; ?> by <?php echo $vacancy['username'] ; ?>, Status: <?php echo $vacancy['status'] ; ?> </b>
-                     </div>
-                      </div>
-                     <?php
-            }
-            ?>
-    </div> 
-  </div>
-
-  <ul class="pagination">
-            <?php
-                if($page_counter == 0){
-                    echo "<li><a href=?start='0' class='active'>0</a></li>";
-                    for($j=1; $j < $paginations; $j++) { 
-                      echo "<li><a href=?start=$j>".$j."</a></li>";
-                   }
-                }else{
-                    echo "<li><a href=?start=$previous>Previous</a></li>"; 
-                    for($j=0; $j < $paginations; $j++) {
-                     if($j == $page_counter) {
-                        echo "<li><a href=?start=$j class='active'>".$j."</a></li>";
-                     }else{
-                        echo "<li><a href=?start=$j>".$j."</a></li>";
-                     } 
-                  }if($j != $page_counter+1)
-                    echo "<li><a href=?start=$next>Next</a></li>"; 
-                } 
-            ?>
-            </ul>
-  </center>
-
-  </div>
-         
 <?php }else{ 
   header("location:404.php");
 }
