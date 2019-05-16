@@ -366,7 +366,7 @@ ci.city_id, ci.city_name, s.state_id, s.state_name
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label">Email</label>
                             <div class="col-lg-9">
-                                <input class="form-control" type="email" name="uemail" value="<?php echo $user['email'];?>">
+                                <input class="form-control" type="email" name="uemail" value="<?php echo $user['email'];?>" disabled>
                             </div>
                         </div>
                         <div class="form-group row">

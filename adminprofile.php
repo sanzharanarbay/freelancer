@@ -1,6 +1,5 @@
 <?php 
-  session_start(); 
-
+  include('to_editadminprofile.php') ;
   if (isset($_GET['logout'])) {
   	session_destroy();
   	unset($_SESSION['username']);
@@ -28,7 +27,9 @@
     <link href="assets/css/dashboard.css" rel="stylesheet">
     <link rel="shortcut icon" href="assets/images/logo.png" type="image/x-icon">
     <style type="text/css">
-        	
+        	body{
+            margin-top:70px;
+            margin-left:300px;}    
           .dropbtn {
     background-color: #4CAF50;
     color: white;
@@ -68,6 +69,12 @@
   
   .dropdown:hover .dropbtn {
     background-color: #3e8e41;
+  }
+  .form-control{
+    width:450px;
+    color:#323232;
+    font-size:20px;
+    font-family:Arial;
   }
           </style>
   </head>
@@ -139,12 +146,187 @@
     
   </div>
 </div>
+<?php
+include 'db.php';
+$userid = $_SESSION['user_id'];
+$pass = $_SESSION['password'];
+$query = $connection->prepare(" SELECT u.id, u.u_lastname, u.u_firstname, u.email, u.username, 
+u.u_phonenumber, u.u_country, u.u_city, u.u_state, u.password, u.roleid, r.r_id, r.r_name, c.country_id, c.country_name,
+ci.city_id, ci.city_name, s.state_id, s.state_name
+                     FROM users u 
+                     LEFT OUTER JOIN roles r  ON r.r_id = u.roleid
+                     LEFT OUTER JOIN states s  ON s.state_id = u.u_state
+                     LEFT OUTER JOIN countries c  ON c.country_id = u.u_country
+                     LEFT OUTER JOIN cities ci  ON ci.city_id = u.u_city
+                     WHERE u.id = :users_id
+                     ") or die($mysqli->error);
+    $query->execute(array('users_id'=>$userid));
+    $user = $query->fetch();
+    
+
+?>
+<hr>
+<div class="container bootstrap snippet">
+    <div class="row">
+        <div class="col-sm-8">
+        <?php
+                if (isset($_SESSION['messages'])): ?>
+
+                <div class="alert alert-<?=$_SESSION['msg_types']?>">
+                    <?php
+                    echo $_SESSION['messages'];
+                    unset($_SESSION['messages']);
+                    ?>
+
+                </div>
+
+                <?php endif ?>
+                <?php include('errors.php'); ?>
+            </div>
+        <div class="col-sm-4">
+            <a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="https://bootdey.com/img/Content/avatar/avatar1.png"></a>
+            <input type="file" name="upload" id="upload"  placeholder="Выбрать файл">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <!--left col-->
+
+            <ul class="list-group">
+                <li class="list-group-item text-muted">Профиль</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong>Привелегия:</strong></span> <?php echo $user['r_name']; ?></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong>Логин:</strong></span><?php echo $user['username']; ?></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong>ФИО:</strong></span> <?php echo $user['u_firstname']." ".$user['u_lastname']; ?></li>
+
+            </ul>
+
+            <div class="panel panel-default">
+                <hr>
+            </div>
+
+            <ul class="list-group">
+                <li class="list-group-item text-muted">Дополнительно <i class="fa fa-dashboard fa-1x"></i></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong>Страна:</strong></span> <?php echo $user['country_name']; ?></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong>Регион:</strong></span> <?php echo $user['state_name']; ?></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong>Город:</strong></span> <?php echo $user['city_name']; ?></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong>Телефон:</strong></span> <?php echo $user['u_phonenumber']; ?></li>
+            </ul>
+
+           
+
+        </div>
+        <!--/col-3-->
+        <div class="col-sm-9">
+
+            <ul class="nav nav-tabs" id="myTab">
+                <li class="active"><a href="#settings" data-toggle="tab">Настройки</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane active" id="settings">
+
+                    <hr>
+                    
+                    <form class="form" action="adminprofile.php" method="post" id="registrationForm">
+                        <div class="form-group">
+                        <input type="hidden" name="userid" value="<?php echo $userid; ?>">
+                            <div class="col-xs-6">
+                                <label for="first_name">
+                                    <h4>Имя</h4></label>
+                                <input type="text" class="form-control" name="firstname" id="first_name"  value="<?php echo $user['u_firstname']; ?>">
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="last_name">
+                                    <h4>Фамилия</h4></label>
+                                <input type="text" class="form-control" name="lastname" id="last_name" value="<?php echo $user['u_lastname']; ?>">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="phone">
+                                    <h4>Мобильный телефон</h4></label>
+                                <input type="text" class="form-control" name="phonenumber" id="phone" value="<?php echo $user['u_phonenumber']; ?>" maxlength="12">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="email">
+                                    <h4>Email</h4></label>
+                                <input type="email" class="form-control" name="email" id="email" value="<?php echo $user['email']; ?>" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                           
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="password">
+                                    <h4>Пароль</h4></label>
+                                <input type="password" class="form-control" name="password" id="password" value="<?php echo $_SESSION['password']; ?>" minlength="8">
+                                <input type="checkbox" onclick="myFunction()">Показать пароль
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="password2">
+                                    <h4>Повторите пароль</h4></label>
+                                <input type="password" class="form-control" name="password2" id="password2" value="<?php echo $_SESSION['password']; ?>" minlength="8">
+                                <input type="checkbox" onclick="myFunction2()">Показать пароль
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <br>
+                                <button class="btn btn-md btn-success" type="submit" name="update_admin"><i class="glyphicon glyphicon-ok-sign"></i> Сохранить</button>
+                                <button class="btn btn-md btn-dark" type="reset"><i class="glyphicon glyphicon-repeat"></i> Отмена</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            <!--/tab-pane-->
+        </div>
+        <!--/tab-content-->
+
+    </div>
+    <!--/col-9-->
+</div>
+<!--/row-->
 
 <?php }else{ 
   header("location:404.php");
 }
   ?>
- 
+  <script>
+function myFunction() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+function myFunction2() {
+  var x = document.getElementById("password2");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+ <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
       <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="/docs/4.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>

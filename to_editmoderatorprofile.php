@@ -14,13 +14,13 @@ $errors = array();
 $mysqli = new mysqli('localhost','root','','freelancerkz') or die(mysqli_error($mysqli));
 
 // UPDATE 'USER'S DATA
-if (isset($_POST['edit_profile'])) {
+if (isset($_POST['update_moderator'])) {
     // receive all input values from the form
-    $ulastname =$_POST['ulastname'];
-    $ufirstname = $_POST['ufirstname'];
-    $uphonenumber =$_POST['uphonenumber'];
-    $upassword_1 = $_POST['upassword_1'];
-    $upassword_2 = $_POST['upassword_2'];
+    $ulastname =$_POST['lastname'];
+    $ufirstname = $_POST['firstname'];
+    $uphonenumber =$_POST['phonenumber'];
+    $upassword_1 = $_POST['password'];
+    $upassword_2 = $_POST['password2'];
     $userid = $_POST['userid'];
   
 
@@ -38,7 +38,7 @@ if (isset($_POST['edit_profile'])) {
         $_SESSION['messages'] = "Данные успешно изменены!!!";
         $_SESSION['msg_types'] = "success";
     
-        header('location: profile.php');
+        header('location: moderatorprofile.php');
     }
   }
 

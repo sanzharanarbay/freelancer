@@ -162,7 +162,7 @@ p{
 
         <!--Home page style-->
        
-    <section class="sections">
+    <section id="help" class="sections">
         <div class="container">
     <!-- Example row of columns -->
     <div class="text-center">
@@ -211,7 +211,7 @@ p{
 		<div class="scroll-top">
 		
 			<div class="scrollup">
-				<i class="fa fa-angle-double-up"></i>
+      <a href="#help"><i class="fa fa-angle-double-up"></i></a>
 			</div>
 			
 		</div>

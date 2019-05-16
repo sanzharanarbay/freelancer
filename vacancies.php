@@ -253,7 +253,7 @@ $query = $connection->prepare(" SELECT v.v_id, v.user_id, v.profession_id,  v.va
 		<div class="scroll-top">
 		
 			<div class="scrollup">
-				<i class="fa fa-angle-double-up"></i>
+      <a href="#vacancies"><i class="fa fa-angle-double-up"></i></a>
 			</div>
 			
 		</div>

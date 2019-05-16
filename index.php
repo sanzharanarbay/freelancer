@@ -20,7 +20,7 @@
         <meta name="viewport" content="initial-scale=1">
          <link rel="shortcut icon" href="assets/images/logo.png" type="image/x-icon">
 
-        <link rel="stylesheet" href="assets/css/bootstrap.css" type="text/css">
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
         <!--        <link rel="stylesheet" href="assets/css/bootstrap-theme.min.css">-->
 
 
@@ -154,7 +154,7 @@
 </nav>
 
         <!--Home page style-->
-        <header class="home-bg">
+        <header class="home-bg" id="header">
 		<div class="overlay-img">
 			<div class="container">
 				<div class="row">
@@ -299,7 +299,7 @@
 		<div class="scroll-top">
 		
 			<div class="scrollup">
-				<i class="fa fa-angle-double-up"></i>
+				<a href="#header"><i class="fa fa-angle-double-up"></i></a>
 			</div>
 			
 		</div>
