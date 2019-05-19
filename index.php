@@ -20,7 +20,8 @@
         <meta name="viewport" content="initial-scale=1">
          <link rel="shortcut icon" href="assets/images/logo.png" type="image/x-icon">
 
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
+				<link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
+				
         <!--        <link rel="stylesheet" href="assets/css/bootstrap-theme.min.css">-->
 
 
@@ -90,6 +91,7 @@
 								padding-top:0;
 								margin-top:0;
 								}
+								
 
         </style>
     </head>
@@ -177,31 +179,32 @@
             <div class="container">
                 <!-- Example row of columns -->
                 <div class="row">
-					<div class="col-sm-4 col-sm-12 col-xs-12">
+					<div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-sm-12 col-xs-12">
 						<div class="promotion">
 						
-						<h1>Peace<br> of Mind<i class="fa fa-circle"></i></h1>
-						<p>You’re safe with us. The privacy and security of your financial information is our top priority.</p>
+						<h1>Безопасная <br> работа<i class="fa fa-circle"></i></h1>
+						<p>Резервирование средств на сервисе позволит вам быть уверенными в честном
+              и успешном исходе проекта.</p>
 						<a href="#"><h4>more<span><i class="fa fa-long-arrow-right"></i></span></h4></a>
 						
 						</div>
 					</div>
 					
-					<div class="col-sm-4 col-sm-12 col-xs-12">
+					<div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-sm-12 col-xs-12">
 						<div class="promotion">
 						
-						<h1>Free<br>Actually free<i class="fa fa-circle"></i></h1>
-						<p>You’re safe with us. The privacy and security of your financial information is our top priority.</p>
+						<h1>Проверенные <br>исполнители<i class="fa fa-circle"></i></h1>
+						<p> Проверенные личные данные фрилансеров, надежность при регистрация пользователей</p>
 						<a href="#"><h4>more<span><i class="fa fa-long-arrow-right"></i></span></h4></a>
 						
 						</div>
 					</div>
 					
-					<div class="col-sm-4 col-sm-12 col-xs-12">
+					<div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-sm-12 col-xs-12">
 						<div class="promotion">
 						
-						<h1>Simple<br> payments<i class="fa fa-circle"></i></h1>
-						<p>You’re safe with us. The privacy and security of your financial information is our top priority.</p>
+						<h1>Мощная <br> платформа<i class="fa fa-circle"></i></h1>
+						<p>В вашем распоряжении удобная система с красочным дизайном и с удобным интерфейсом для пользователей</p>
 						<a href="#"><h4>more<span><i class="fa fa-long-arrow-right"></i></span></h4></a>
 						
 						</div>
@@ -216,19 +219,19 @@
             <div class="container">
                 <!-- Example row of columns -->
                 <div class="row">
-					<div class="col-sm-6 col-sm-12 col-xs-12">
+					<div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-sm-12 col-xs-12">
 						<div class="portfolio">
 							<img src="assets/images/computer.png" alt="" />
 						</div>
 					</div>
 					
-					<div class="col-sm-5 col-sm-12 col-xs-12">
+					<div class="col-xl-8 col-lg-8 col-md-8 col-sm-5 col-sm-12 col-xs-12">
 						<div class="portfolio">
 						
 						<div class="item">
-						<h1>Portfolio<i class="fa fa-circle"></i></h1>
-						<h5>We are small, but strong team</h5>
-						<p>The same debit card you use to buy coffee lets deposit money straight to your bank account.</p>
+						<h1>Портфолио<i class="fa fa-circle"></i></h1>
+						<h5>Мы небольшая, но сильная команда</h5>
+						<p>Для удобства вы можете скачать мобильное приложение для IOS и Android в App Store и Google Play.</p>
 						<p>You’re safe with us. The privacy and security of your financial information is our top priority.</p>
 						<a href="#"><h4>more<span><i class="fa fa-long-arrow-right"></i></span></h4></a>
 						</div>
@@ -242,56 +245,53 @@
 		
 		
 		<section id="our-team" class="sections">
-            <div class="container">
-                <!-- Example row of columns -->
-                <div class="row">
+		<div class="container">
 						<div class="team-heading">
-							<h1>Our Team<i class="fa fa-circle"></i></h1>
-							<p>They are big but still friendly.</p>
+							<h1>Наша команда<i class="fa fa-circle"></i></h1>
+							<p>Главная ценность команды - дружба.</p>
 						</div>
 				
-				<div class="team-member">
-					
-					<div class="col-sm-4 col-sm-12 col-xs-12">
+				
+			
+                <!-- Example row of columns -->
+        <div class="row">
+					<div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-sm-12 col-xs-12">
 						<div class="team">
-							<img src="assets/images/man1.png" alt="" />
+							<img  class="rounded-circle" src="assets/images/adilet.jpg" height="120" width="120" alt="" />
 							<div class="team-info">
-								<h2>Joey</h2>
+								<h2>Adilet</h2>
 								<h5>Web Developer</h5>
-								<p>Coffee lover.  Always on bike. iPhone fan.</p>
+								<p>Loves music. Founder of Freelancer.kz  Student of IITU. </p>
 							</div>
 						</div>	
 					</div>
 					
-					<div class="col-sm-4 col-sm-12 col-xs-12">
+					<div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-sm-12 col-xs-12">
 						<div class="team">
-							<img src="assets/images/man2.png" alt="" />
+							<img  class="rounded-circle" src="assets/images/sanzhar.jpg" alt="" height="120" width="120"/>
 							<div class="team-info">
-								<h2>Matt</h2>
+								<h2>Sanzhar</h2>
+								<h5>Web developer</h5>
+								<p>Football lover.  Chelsea fan. Student of IITU</p>
+							</div>
+						</div>	
+					</div>
+					
+					<div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-sm-12 col-xs-12">
+						<div class="team">
+							<img class="rounded-circle" src="assets/images/maksat.jpg" alt="" height="120" width="120"/>
+							<div class="team-info">
+								<h2>Maksat</h2>
 								<h5>Web Designer</h5>
-								<p>Coffee lover.  Always on bike. iPhone fan.</p>
+								<p>CS lover.  Always on bike. Student of IITU.</p>
 							</div>
 						</div>	
 					</div>
-					
-					<div class="col-sm-4 col-sm-12 col-xs-12">
-						<div class="team">
-							<img src="assets/images/man3.png" alt="" />
-							<div class="team-info">
-								<h2>Mike</h2>
-								<h5>Copywriter</h5>
-								<p>Coffee lover.  Always on bike. iPhone fan.</p>
-							</div>
-						</div>	
-					</div>
-					
-					<div class="team-more">
+				
+				</div>
+				<div class="team-more">
 						<a href="#"><h4>more<span><i class="fa fa-long-arrow-right"></i></span></h4></a>
 					</div>
-					
-				</div>	
-					
-				</div>
                 
             </div> <!-- /container -->       
         </section>
