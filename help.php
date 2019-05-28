@@ -224,10 +224,10 @@ p{
 				
             		<div class="col-md-6 col-sm-6 col-xs-12">
 						<div class="social-network">
-							<a href="#"><i class="fa fa-twitter"></i></a>
+							<a href="#"><i class="fa fa-vk"></i></a>
 							<a href="#"><i class="fa fa-instagram"></i></a>
 							<a href="#"><i class="fa fa-facebook"></i></a>
-							<a href="#"><i class="fa fa-google-plus"></i></a>
+							<a href="#"><i class="fa fa-twitter"></i></a>
 						</div>
 					</div>
 					

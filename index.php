@@ -185,7 +185,7 @@
 						<h1>Безопасная <br> работа<i class="fa fa-circle"></i></h1>
 						<p>Резервирование средств на сервисе позволит вам быть уверенными в честном
               и успешном исходе проекта.</p>
-						<a href="#"><h4>more<span><i class="fa fa-long-arrow-right"></i></span></h4></a>
+						<a href="#"><h4>Подробнее<span><i class="fa fa-long-arrow-right"></i></span></h4></a>
 						
 						</div>
 					</div>
@@ -195,7 +195,7 @@
 						
 						<h1>Проверенные <br>исполнители<i class="fa fa-circle"></i></h1>
 						<p> Проверенные личные данные фрилансеров, надежность при регистрация пользователей</p>
-						<a href="#"><h4>more<span><i class="fa fa-long-arrow-right"></i></span></h4></a>
+						<a href="#"><h4>Подробнее<span><i class="fa fa-long-arrow-right"></i></span></h4></a>
 						
 						</div>
 					</div>
@@ -205,7 +205,7 @@
 						
 						<h1>Мощная <br> платформа<i class="fa fa-circle"></i></h1>
 						<p>В вашем распоряжении удобная система с красочным дизайном и с удобным интерфейсом для пользователей</p>
-						<a href="#"><h4>more<span><i class="fa fa-long-arrow-right"></i></span></h4></a>
+						<a href="#"><h4>Подробнее<span><i class="fa fa-long-arrow-right"></i></span></h4></a>
 						
 						</div>
 					</div>
@@ -232,8 +232,8 @@
 						<h1>Портфолио<i class="fa fa-circle"></i></h1>
 						<h5>Мы небольшая, но сильная команда</h5>
 						<p>Для удобства вы можете скачать мобильное приложение для IOS и Android в App Store и Google Play.</p>
-						<p>You’re safe with us. The privacy and security of your financial information is our top priority.</p>
-						<a href="#"><h4>more<span><i class="fa fa-long-arrow-right"></i></span></h4></a>
+						<p>Вы в безопасности с нами. Конфиденциальность и безопасность вашей информации - наш главный приоритет</p>
+						<a href="#"><h4>Подробнее<span><i class="fa fa-long-arrow-right"></i></span></h4></a>
 						</div>
 						
 						</div>
@@ -290,7 +290,7 @@
 				
 				</div>
 				<div class="team-more">
-						<a href="#"><h4>more<span><i class="fa fa-long-arrow-right"></i></span></h4></a>
+						<a href="#"><h4>Подробнее<span><i class="fa fa-long-arrow-right"></i></span></h4></a>
 					</div>
                 
             </div> <!-- /container -->       
@@ -312,10 +312,10 @@
 				
             		<div class="col-md-6 col-sm-6 col-xs-12">
 						<div class="social-network">
-							<a href="#"><i class="fa fa-twitter"></i></a>
+							<a href="#"><i class="fa fa-vk"></i></a>
 							<a href="#"><i class="fa fa-instagram"></i></a>
 							<a href="#"><i class="fa fa-facebook"></i></a>
-							<a href="#"><i class="fa fa-google-plus"></i></a>
+							<a href="#"><i class="fa fa-twitter"></i></a>
 						</div>
 					</div>
 					
